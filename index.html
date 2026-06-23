@@ -3,257 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitation</title>
-    <style>
-        /* CSS reset & modern variables */
-        :root {
-            --bg-color: #fafafa;
-            --text-primary: #18181b;
-            --btn-yes-bg: #18181b;
-            --btn-yes-text: #ffffff;
-            --btn-no-bg: #f4f4f5;
-            --btn-no-text: #27272a;
-            --btn-hover-opacity: 0.9;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-            overflow: hidden; /* Prevent scrollbars as the Yes button expands */
-        }
-
-        /* Centered page layout */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.025em;
-            color: var(--text-primary);
-            line-height: 1.3;
-        }
-
-        /* Simple button group */
-        .button-group {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            position: relative;
-        }
-
-        /* Shared button styling */
-        .btn {
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 10px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: opacity 0.15s ease;
-        }
-
-        /* Specific buttons */
-        #btn-yes {
-            background-color: var(--btn-yes-bg);
-            color: var(--btn-yes-text);
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.15s ease;
-            transform-origin: center;
-        }
-
-        #btn-no {
-            background-color: var(--btn-no-bg);
-            color: var(--btn-no-text);
-            transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1);
-            transform-origin: center;
-        }
-
-        .btn:hover {
-            opacity: var(--btn-hover-opacity);
-        }
-    </style>
+    <meta name="description" content="Sri — Minimalist portfolio, design, development and reflections.">
+    <title>Cog in the Wheel</title>
+    <link rel="stylesheet" href="./style.css?v=2.1">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Will you go on another date with Sri?</h1>
-        
-        <div class="button-group">
-            <button type="button" class="btn" id="btn-yes">Yes</button>
-            <button type="button" class="btn" id="btn-no" tabindex="-1">No</button>
+    <!-- Split Hero Section -->
+    <section class="split-hero">
+        <div class="hero-left">
+            <h1 class="hero-brand"><a href="./index.html">Cog in the Wheel</a></h1>
         </div>
-    </div>
+        <div class="hero-right">
+            <nav class="hero-nav">
+                <a href="./index.html" class="hero-nav-link active">Home</a>
+                <a href="./blog.html" class="hero-nav-link">Blog posts & publications</a>
+                <a href="./contact.html" class="hero-nav-link">Contact Sri</a>
+            </nav>
+            <div class="hero-about-content">
+                <p class="hero-about-text">
+                    The world is driven by massive, complex systems, and I view myself as just <strong>one small cog</strong> trying to help the wheels of <strong>healthcare and sustainable tech</strong> turn a little smoother. My day-to-day focuses on <strong>researching and building physical microfluidic hardware</strong> using a variety of fabrication techniques to bridge the gap between early concepts and functional devices. This blog is simply my corner to document that process, exploring the quiet, often messy mechanics of <strong>how ideas are actually translated into the real world</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // Check if page was refreshed after landing on success state
-        if (sessionStorage.getItem('successStateReached') === 'true') {
-            sessionStorage.removeItem('successStateReached');
-            window.location.href = 'page1.html';
-        }
+    <!-- Main Content -->
+    <main>
+        <!-- Wider container for gallery images -->
+        <div class="gallery-container">
+            <section class="image-gallery">
+                
+                <!-- Block 1: Saffron Gold -->
+                <div class="gallery-block block-saffron">
+                    <div class="gallery-image-container">
+                        <img src="./DR_MFP_04.jpg" alt="DR_MFP_04" class="gallery-image">
+                    </div>
+                </div>
+                
+                <!-- Line 2 -->
+                <hr class="gallery-divider">
+                
+                <!-- Block 2: Dusty Amethyst -->
+                <div class="gallery-block block-amethyst">
+                    <div class="gallery-image-container">
+                        <img src="./DR_MFP_07.jpg" alt="DR_MFP_07" class="gallery-image">
+                    </div>
+                </div>
+                
+                <!-- Line 3 -->
+                <hr class="gallery-divider">
+                
+                <!-- Block 3: Cobalt Blue -->
+                <div class="gallery-block block-cobalt">
+                    <div class="gallery-image-container">
+                        <img src="./Single_cell_01.jpg" alt="Single_cell_01" class="gallery-image">
+                    </div>
+                </div>
+                
+                <!-- Line 4 -->
+                <hr class="gallery-divider">
+                
+                <!-- Block 4: Burnt Sienna -->
+                <div class="gallery-block block-sienna">
+                    <div class="gallery-image-container">
+                        <img src="./2025_10_01_04_55_02_547797.png" alt="2025_10_01_04_55_02_547797" class="gallery-image">
+                    </div>
+                </div>
 
-        const btnNo = document.getElementById('btn-no');
-        const btnYes = document.getElementById('btn-yes');
-        const header = document.querySelector('h1');
-        const buttonGroup = document.querySelector('.button-group');
+                <!-- Final Line + Bottom Spacer -->
+                <hr class="gallery-divider">
+                <div class="gallery-spacer"></div>
 
-        let origCenter = null;
-        let yesScale = 1.0;
+            </section>
+        </div>
+    </main>
 
-        // Memoize the original center coordinate of the No button to compute precise offset translations
-        function getOrigCenter() {
-            if (!origCenter) {
-                const prevTransform = btnNo.style.transform;
-                btnNo.style.transform = 'none';
-                const rect = btnNo.getBoundingClientRect();
-                origCenter = {
-                    x: rect.left + rect.width / 2,
-                    y: rect.top + rect.height / 2
-                };
-                btnNo.style.transform = prevTransform;
-            }
-            return origCenter;
-        }
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; Sri. Curated in 2026.</p>
+        </div>
+    </footer>
 
-        function triggerDodge(cursorX, cursorY) {
-            const center = getOrigCenter();
-            
-            // Set dynamic coordinate range depending on viewport size
-            const rangeX = Math.min(window.innerWidth / 2.5, 300);
-            const rangeY = Math.min(window.innerHeight / 2.5, 300);
-
-            let randomX = 0;
-            let randomY = 0;
-            let attempts = 0;
-
-            // Loop to ensure the new translation lands the button at least 200px away from the mouse cursor
-            while (attempts < 50) {
-                randomX = (Math.random() - 0.5) * 2 * rangeX;
-                randomY = (Math.random() - 0.5) * 2 * rangeY;
-
-                const newCenterX = center.x + randomX;
-                const newCenterY = center.y + randomY;
-                const distToCursor = Math.hypot(newCenterX - cursorX, newCenterY - cursorY);
-
-                if (distToCursor > 200) {
-                    break;
-                }
-                attempts++;
-            }
-
-            // Apply shrinking (scale(0.6)) and translating
-            btnNo.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.6)`;
-            
-            // Grow Yes button incrementally
-            yesScale += 1.5;
-            btnYes.style.transform = `scale(${yesScale})`;
-        }
-
-        // Mouse Move Proximity Handler
-        function handleMouseMove(e) {
-            if (buttonGroup.style.opacity === '0') return; // Don't track if success state is triggered
-
-            const rect = btnNo.getBoundingClientRect();
-            if (rect.width === 0 || rect.height === 0) return; // Ignore layout-unready nodes
-            if (rect.left === 0 && rect.top === 0) return;     // Ignore loading states
-
-            const btnNoCenterX = rect.left + rect.width / 2;
-            const btnNoCenterY = rect.top + rect.height / 2;
-
-            const distance = Math.hypot(e.clientX - btnNoCenterX, e.clientY - btnNoCenterY);
-
-            // Trigger runaway dodge if mouse enters the 80px proximity circle
-            if (distance < 80) {
-                triggerDodge(e.clientX, e.clientY);
-            }
-        }
-
-        // Reset memoized center if window dimensions change
-        window.addEventListener('resize', () => {
-            origCenter = null;
-        });
-
-        // Delay mouse tracking until layout settles to prevent race conditions on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.addEventListener('mousemove', handleMouseMove);
-            }, 300);
-        });
-
-        // Block clicks and teleport the button if they somehow manage to click it (e.g. extremely fast cursor speed)
-        btnNo.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            triggerDodge(e.clientX, e.clientY);
-        });
-
-        btnNo.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            triggerDodge(e.clientX, e.clientY);
-        });
-
-        btnNo.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                triggerDodge(0, 0);
-            }
-        });
-
-        // Mobile Touch Tap Dodge
-        btnNo.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // Stop native taps & emulated click events
-            const touch = e.touches[0];
-            triggerDodge(touch.clientX, touch.clientY);
-        }, { passive: false });
-
-        // Success State Action (Yes clicked)
-        btnYes.addEventListener('click', () => {
-            // Store that success state was reached so next refresh redirects back to the survey
-            sessionStorage.setItem('successStateReached', 'true');
-
-            // Disable further dodge events
-            btnNo.style.pointerEvents = 'none';
-
-            // Fade out the buttons
-            buttonGroup.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-            buttonGroup.style.opacity = '0';
-            buttonGroup.style.transform = 'scale(0.8)';
-
-            // Hide them completely once faded
-            setTimeout(() => {
-                buttonGroup.style.display = 'none';
-            }, 400);
-
-            // Animate H1 header text change to new requested text
-            header.style.transition = 'opacity 0.3s ease';
-            header.style.opacity = '0';
-            
-            setTimeout(() => {
-                header.textContent = "Sri would love to plan the next one with you ...Sri will contact you soon!! Stay tuned..";
-                header.style.opacity = '1';
-            }, 300);
-        });
-    </script>
 </body>
 </html>
