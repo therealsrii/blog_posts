@@ -410,6 +410,19 @@ main {
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.25s ease;
+}
+
+.blog-tile:not(.empty-tile) {
+    cursor: pointer;
+}
+
+.blog-tile:not(.empty-tile):hover {
+    background-color: rgba(181, 168, 232, 0.08); /* Subtle periwinkle purple tint matching the hero block */
+}
+
+.blog-tile:not(.empty-tile):hover .blog-title a {
+    opacity: 0.7;
 }
 
 /* Vertical divider between the two tiles in a row */
