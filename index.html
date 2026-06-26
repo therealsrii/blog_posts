@@ -10,15 +10,14 @@
             src: url('./GrandHotel-Regular.ttf') format('truetype');
         }
         :root {
-            --bg-color: #ffffff;
-            --text-primary: #18181b;
-            --btn-bg: #f08a78;
+            --text-primary: #4a3b32;
+            --text-secondary: #7a6a5e;
             --btn-text: #ffffff;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'GrandHotel', -apple-system-rounded, "SF Pro Rounded", system-ui, sans-serif;
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #fffbf5 0%, #f7f1e5 100%);
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
@@ -41,30 +40,31 @@
         }
         p {
             font-size: 26px;
-            color: #52525b;
+            color: var(--text-secondary);
             line-height: 1.4;
         }
         .btn {
             font-family: inherit;
             font-size: 20px;
             font-weight: 500;
-            padding: 12px 32px;
-            background-color: var(--btn-bg);
+            padding: 12px 38px;
+            background: linear-gradient(135deg, #ffa6b4 0%, #ffd0b8 100%);
             color: var(--btn-text);
             border: none;
-            border-radius: 6px;
+            border-radius: 9999px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: transform 0.2s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 14px rgba(255, 166, 180, 0.45);
             align-self: center;
         }
         .btn:hover {
-            background-color: #e87763;
-            box-shadow: 0 0 16px rgba(240, 138, 120, 0.35);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 166, 180, 0.6);
         }
         .btn:active {
-            transform: scale(0.98);
+            transform: translateY(0) scale(0.98);
         }
         
         /* Premium staggered fade-in animations */
