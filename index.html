@@ -3,88 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sri — Minimalist portfolio, design, development and reflections.">
-    <title>Cog in the Wheel</title>
-    <link rel="stylesheet" href="./style.css?v=2.5">
+    <title>Hi Yashika!</title>
+    <style>
+        @font-face {
+            font-family: 'GrandHotel';
+            src: url('./GrandHotel-Regular.ttf') format('truetype');
+        }
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #18181b;
+            --btn-bg: #f08a78;
+            --btn-text: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'GrandHotel', -apple-system-rounded, "SF Pro Rounded", system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        h1 {
+            font-size: 52px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        p {
+            font-size: 26px;
+            color: #52525b;
+            line-height: 1.4;
+        }
+        .btn {
+            font-family: inherit;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 12px 32px;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+            align-self: center;
+        }
+        .btn:hover {
+            background-color: #e87763;
+            box-shadow: 0 0 16px rgba(240, 138, 120, 0.35);
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* Premium staggered fade-in animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.25s; }
+        .delay-3 { animation-delay: 0.4s; }
+    </style>
 </head>
 <body>
-
-    <!-- Split Hero Section -->
-    <section class="split-hero">
-        <div class="hero-left">
-            <h1 class="hero-brand"><a href="./index.html">Cog in the Wheel</a></h1>
-        </div>
-        <div class="hero-right">
-            <nav class="hero-nav">
-                <a href="./index.html" class="hero-nav-link active">Home</a>
-                <a href="./blog.html" class="hero-nav-link">Blog posts & publications</a>
-                <a href="./contact.html" class="hero-nav-link">Contact Sri</a>
-            </nav>
-            <div class="hero-about-content">
-                <p class="hero-about-text">
-                    The world is driven by massive, complex systems, and I view myself as just <strong>one small cog</strong> trying to help the wheels of <strong>healthcare and sustainable tech</strong> turn a little smoother. My day-to-day focuses on <strong>researching and building physical microfluidic hardware</strong> using a variety of fabrication techniques to bridge the gap between early concepts and functional devices. This blog is simply my corner to document that process, exploring the quiet, often messy mechanics of <strong>how ideas are actually translated into the real world</strong>.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Wider container for gallery images -->
-        <div class="gallery-container">
-            <section class="image-gallery">
-                
-                <!-- Block 1: Saffron Gold -->
-                <div class="gallery-block block-saffron">
-                    <div class="gallery-image-container">
-                        <img src="./DR_MFP_04.jpg" alt="DR_MFP_04" class="gallery-image">
-                    </div>
-                </div>
-                
-                <!-- Line 2 -->
-                <hr class="gallery-divider">
-                
-                <!-- Block 2: Dusty Amethyst -->
-                <div class="gallery-block block-amethyst">
-                    <div class="gallery-image-container">
-                        <img src="./DR_MFP_07.jpg" alt="DR_MFP_07" class="gallery-image">
-                    </div>
-                </div>
-                
-                <!-- Line 3 -->
-                <hr class="gallery-divider">
-                
-                <!-- Block 3: Cobalt Blue -->
-                <div class="gallery-block block-cobalt">
-                    <div class="gallery-image-container">
-                        <img src="./Single_cell_01.jpg" alt="Single_cell_01" class="gallery-image">
-                    </div>
-                </div>
-                
-                <!-- Line 4 -->
-                <hr class="gallery-divider">
-                
-                <!-- Block 4: Burnt Sienna -->
-                <div class="gallery-block block-sienna">
-                    <div class="gallery-image-container">
-                        <img src="./2025_10_01_04_55_02_547797.png" alt="2025_10_01_04_55_02_547797" class="gallery-image">
-                    </div>
-                </div>
-
-                <!-- Final Line + Bottom Spacer -->
-                <hr class="gallery-divider">
-                <div class="gallery-spacer"></div>
-
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; Sri. Curated in 2026.</p>
-        </div>
-    </footer>
-
+    <div class="container">
+        <h1 class="animate delay-1">Hi Yashika! Hope you enjoyed last night!</h1>
+        <p class="animate delay-2">Sri has a few questions for you, click next to answer..</p>
+        <a href="survey.html" class="btn animate delay-3">Next</a>
+    </div>
 </body>
 </html>

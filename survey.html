@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Review Survey</title>
+    <style>
+        @font-face {
+            font-family: 'GrandHotel';
+            src: url('./GrandHotel-Regular.ttf') format('truetype');
+        }
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #18181b;
+            --text-secondary: #71717a;
+            --star-empty: #e4e4e7;
+            --star-filled: #f08a78;
+            --btn-bg: #f08a78;
+            --btn-text: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'GrandHotel', -apple-system-rounded, "SF Pro Rounded", system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .survey-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        h1 {
+            font-size: 46px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+        .question-block {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .question-title {
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+        .stars-container {
+            display: flex;
+            gap: 4px;
+        }
+        .star {
+            font-size: 26px;
+            cursor: pointer;
+            color: var(--star-empty);
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.1s ease;
+        }
+        .star:focus { outline: none; }
+        .star.filled { color: var(--star-filled); }
+        .btn-next {
+            width: 100%;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            font-family: inherit;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: transform 0.2s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .btn-next:hover:not(:disabled) {
+            background-color: #e87763;
+            box-shadow: 0 0 16px rgba(240, 138, 120, 0.35);
+        }
+        .btn-next:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+        .btn-next:disabled {
+            background-color: #ebdcd4;
+            color: #7c6e65;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <h1>Date Review</h1>
+
+        <div class="question-block">
+            <span class="question-title">Banter Quality</span>
+            <div class="stars-container" data-metric="banter">
+                <button type="button" class="star" data-value="1">★</button>
+                <button type="button" class="star" data-value="2">★</button>
+                <button type="button" class="star" data-value="3">★</button>
+                <button type="button" class="star" data-value="4">★</button>
+                <button type="button" class="star" data-value="5">★</button>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-title">Eye Contact</span>
+            <div class="stars-container" data-metric="eyeContact">
+                <button type="button" class="star" data-value="1">★</button>
+                <button type="button" class="star" data-value="2">★</button>
+                <button type="button" class="star" data-value="3">★</button>
+                <button type="button" class="star" data-value="4">★</button>
+                <button type="button" class="star" data-value="5">★</button>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-title">Snack Selection</span>
+            <div class="stars-container" data-metric="snackSelection">
+                <button type="button" class="star" data-value="1">★</button>
+                <button type="button" class="star" data-value="2">★</button>
+                <button type="button" class="star" data-value="3">★</button>
+                <button type="button" class="star" data-value="4">★</button>
+                <button type="button" class="star" data-value="5">★</button>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-title">Awkward Silence Frequency</span>
+            <div class="stars-container" data-metric="awkwardSilence">
+                <button type="button" class="star" data-value="1">★</button>
+                <button type="button" class="star" data-value="2">★</button>
+                <button type="button" class="star" data-value="3">★</button>
+                <button type="button" class="star" data-value="4">★</button>
+                <button type="button" class="star" data-value="5">★</button>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <span class="question-title">Overall Vibe</span>
+            <div class="stars-container" data-metric="overallVibe">
+                <button type="button" class="star" data-value="1">★</button>
+                <button type="button" class="star" data-value="2">★</button>
+                <button type="button" class="star" data-value="3">★</button>
+                <button type="button" class="star" data-value="4">★</button>
+                <button type="button" class="star" data-value="5">★</button>
+            </div>
+        </div>
+
+        <button type="button" class="btn-next" id="btn-next" disabled>Next</button>
+    </div>
+
+    <script>
+        const starContainers = document.querySelectorAll('.stars-container');
+        const btnNext = document.getElementById('btn-next');
+
+        const ratings = {
+            banter: 0,
+            eyeContact: 0,
+            snackSelection: 0,
+            awkwardSilence: 0,
+            overallVibe: 0
+        };
+
+        function checkRatingsComplete() {
+            const allRated = Object.values(ratings).every(r => r > 0);
+            btnNext.disabled = !allRated;
+        }
+
+        starContainers.forEach(container => {
+            const metric = container.getAttribute('data-metric');
+            const stars = container.querySelectorAll('.star');
+
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.getAttribute('data-value'));
+                    ratings[metric] = rating;
+
+                    stars.forEach(s => {
+                        const val = parseInt(s.getAttribute('data-value'));
+                        s.classList.toggle('filled', val <= rating);
+                    });
+
+                    checkRatingsComplete();
+                });
+            });
+        });
+
+        // Configure your Formspree Form ID here to receive responses by email
+        // Register at https://formspree.io/ and create a form to get an ID.
+        const FORMSPREE_FORM_ID = ''; 
+
+        btnNext.addEventListener('click', () => {
+            // Save locally in the browser
+            localStorage.setItem('date_survey_ratings', JSON.stringify(ratings));
+
+            if (FORMSPREE_FORM_ID) {
+                btnNext.disabled = true;
+                btnNext.textContent = 'Saving...';
+                
+                fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(ratings)
+                })
+                .then(() => {
+                    window.location.href = 'invite.html';
+                })
+                .catch(err => {
+                    console.error('Submission failed:', err);
+                    window.location.href = 'invite.html';
+                });
+            } else {
+                window.location.href = 'invite.html';
+            }
+        });
+    </script>
+</body>
+</html>

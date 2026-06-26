@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you go on another date?</title>
+    <style>
+        @font-face {
+            font-family: 'GrandHotel';
+            src: url('./GrandHotel-Regular.ttf') format('truetype');
+        }
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #18181b;
+            --btn-yes-bg: #f08a78;
+            --btn-yes-text: #ffffff;
+            --btn-no-bg: #f4f4f5;
+            --btn-no-text: #71717a;
+            --btn-hover-opacity: 0.9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'GrandHotel', -apple-system-rounded, "SF Pro Rounded", system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 52px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            position: relative;
+        }
+        .btn {
+            font-family: inherit;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        #btn-yes {
+            background-color: var(--btn-yes-bg);
+            color: var(--btn-yes-text);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+            transform-origin: center;
+        }
+        #btn-no {
+            background-color: var(--btn-no-bg);
+            color: var(--btn-no-text);
+            transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: center;
+        }
+        #btn-yes:hover {
+            background-color: #e87763;
+            box-shadow: 0 0 16px rgba(240, 138, 120, 0.35);
+        }
+        #btn-no:hover {
+            opacity: 0.9;
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you go on another date with Sri?</h1>
+        <div class="button-group">
+            <button type="button" class="btn" id="btn-yes">Yes</button>
+            <button type="button" class="btn" id="btn-no" tabindex="-1">No</button>
+        </div>
+    </div>
+
+    <script>
+        const btnNo = document.getElementById('btn-no');
+        const btnYes = document.getElementById('btn-yes');
+        const header = document.querySelector('h1');
+        const buttonGroup = document.querySelector('.button-group');
+
+        let origCenter = null;
+        let yesScale = 1.0;
+
+        function getOrigCenter() {
+            if (!origCenter) {
+                const prevTransform = btnNo.style.transform;
+                btnNo.style.transform = 'none';
+                const rect = btnNo.getBoundingClientRect();
+                origCenter = {
+                    x: rect.left + rect.width / 2,
+                    y: rect.top + rect.height / 2
+                };
+                btnNo.style.transform = prevTransform;
+            }
+            return origCenter;
+        }
+
+        function triggerDodge(cursorX, cursorY) {
+            const center = getOrigCenter();
+            const rangeX = Math.min(window.innerWidth / 2.5, 300);
+            const rangeY = Math.min(window.innerHeight / 2.5, 300);
+
+            let randomX = 0, randomY = 0;
+            for (let i = 0; i < 50; i++) {
+                randomX = (Math.random() - 0.5) * 2 * rangeX;
+                randomY = (Math.random() - 0.5) * 2 * rangeY;
+                if (Math.hypot(center.x + randomX - cursorX, center.y + randomY - cursorY) > 200) break;
+            }
+
+            btnNo.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.6)`;
+            yesScale += 1.5;
+            btnYes.style.transform = `scale(${yesScale})`;
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (buttonGroup.style.opacity === '0') return;
+            const rect = btnNo.getBoundingClientRect();
+            if (!rect.width || !rect.left) return;
+            if (Math.hypot(e.clientX - (rect.left + rect.width/2), e.clientY - (rect.top + rect.height/2)) < 80) {
+                triggerDodge(e.clientX, e.clientY);
+            }
+        });
+
+        window.addEventListener('resize', () => { origCenter = null; });
+
+        btnNo.addEventListener('click', (e) => { e.preventDefault(); triggerDodge(e.clientX, e.clientY); });
+        btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); triggerDodge(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
+
+        btnYes.addEventListener('click', () => {
+            buttonGroup.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            buttonGroup.style.opacity = '0';
+            buttonGroup.style.transform = 'scale(0.8)';
+            setTimeout(() => { buttonGroup.style.display = 'none'; }, 400);
+
+            header.style.transition = 'opacity 0.3s ease';
+            header.style.opacity = '0';
+            setTimeout(() => {
+                header.textContent = "Sri would love to plan the next one with you ...Sri will contact you soon!! Stay tuned..";
+                header.style.opacity = '1';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
