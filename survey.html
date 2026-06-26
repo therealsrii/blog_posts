@@ -10,18 +10,16 @@
             src: url('./GrandHotel-Regular.ttf') format('truetype');
         }
         :root {
-            --bg-color: #ffffff;
-            --text-primary: #18181b;
-            --text-secondary: #71717a;
-            --star-empty: #e4e4e7;
-            --star-filled: #f08a78;
-            --btn-bg: #f08a78;
+            --text-primary: #4a3b32;
+            --text-secondary: #7a6a5e;
+            --star-empty: #eddcdb;
+            --star-filled: #ff96a7;
             --btn-text: #ffffff;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'GrandHotel', -apple-system-rounded, "SF Pro Rounded", system-ui, sans-serif;
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #fffbf5 0%, #ffeef2 100%);
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
@@ -31,10 +29,17 @@
         }
         .survey-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 440px;
             display: flex;
             flex-direction: column;
             gap: 24px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(255, 182, 193, 0.15);
         }
         h1 {
             font-size: 46px;
@@ -65,36 +70,50 @@
             border: none;
             padding: 0;
             line-height: 1;
-            transition: color 0.1s ease;
+            transition: color 0.15s ease, transform 0.15s ease;
+            transform-origin: center;
         }
         .star:focus { outline: none; }
-        .star.filled { color: var(--star-filled); }
+        .star.filled {
+            color: var(--star-filled);
+            transform: scale(1.15);
+        }
         .btn-next {
             width: 100%;
-            background-color: var(--btn-bg);
+            background: linear-gradient(135deg, #f08a78 0%, #ff96a7 100%);
             color: var(--btn-text);
             font-family: inherit;
             font-size: 20px;
             font-weight: 500;
             padding: 12px;
             border: none;
-            border-radius: 6px;
+            border-radius: 9999px;
             cursor: pointer;
             margin-top: 12px;
-            transition: transform 0.2s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 14px rgba(240, 138, 120, 0.4);
         }
+        
+        @keyframes hoverBounce {
+            0%, 100% { transform: translateY(-2px); }
+            50% { transform: translateY(-6px); }
+        }
+        
         .btn-next:hover:not(:disabled) {
-            background-color: #e87763;
-            box-shadow: 0 0 16px rgba(240, 138, 120, 0.35);
+            animation: hoverBounce 1s ease-in-out infinite;
+            box-shadow: 0 6px 18px rgba(240, 138, 120, 0.55);
         }
         .btn-next:active:not(:disabled) {
+            animation: none;
             transform: scale(0.98);
         }
         .btn-next:disabled {
-            background-color: #ebdcd4;
+            background: #ebdcd4;
             color: #7c6e65;
             opacity: 0.5;
+            box-shadow: none;
             cursor: not-allowed;
+            transform: none;
         }
     </style>
 </head>
