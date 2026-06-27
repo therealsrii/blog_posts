@@ -261,6 +261,16 @@
             inviteCard.style.opacity = '0';
             inviteCard.style.transform = 'scale(0.95)';
             
+            // Send notification to ntfy.sh (free/private alert ping)
+            fetch('https://ntfy.sh/sri-date-survey-98ba7709', {
+                method: 'POST',
+                headers: {
+                    'Title': 'Date #2 Status 💖',
+                    'Tags': 'heart,tada'
+                },
+                body: "She clicked YES! The application for Date #2 is officially approved! 🎉☕"
+            }).catch(err => console.error('Notification failed:', err));
+
             setTimeout(() => {
                 inviteCard.style.display = 'none';
                 successCard.style.display = 'block';
