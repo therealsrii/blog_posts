@@ -225,13 +225,10 @@
             localStorage.setItem('date_survey_ratings', JSON.stringify(ratings));
 
             // Send notification to ntfy.sh (free/private alert ping)
-            fetch('https://ntfy.sh/sri-date-survey-98ba7709', {
+            fetch('https://ntfy.sh/sri-date-survey-98ba7709?title=New+Date+Survey+Response!+📊&tags=bar_chart,heart', {
                 method: 'POST',
-                headers: {
-                    'Title': 'New Date Survey Response! 📊',
-                    'Tags': 'bar_chart,heart'
-                },
-                body: `Venue Selection: ${ratings.venue}/5\nSri Uno Mastery: ${ratings.sriUno}/5\nYashika Uno Strategy: ${ratings.yashikaUno}/5\nPanicked Silences: ${ratings.panickedSilences}/5\nOverall Vibe: ${ratings.overallVibe}/5`
+                body: `Venue Selection: ${ratings.venue}/5\nSri Uno Mastery: ${ratings.sriUno}/5\nYashika Uno Strategy: ${ratings.yashikaUno}/5\nPanicked Silences: ${ratings.panickedSilences}/5\nOverall Vibe: ${ratings.overallVibe}/5`,
+                keepalive: true
             }).catch(err => console.error('Notification failed:', err));
 
             if (FORMSPREE_FORM_ID) {
